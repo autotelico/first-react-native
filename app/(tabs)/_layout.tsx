@@ -5,15 +5,16 @@ import React from "react";
 
 const TabIcon = ({ icon, color, name, focused }: any) => {
   return (
-    <View className="items-center justify-center">
+    <View className="items-center justify-center gap-2">
       <Image
-        source={require("@/assets/icons/home.png")}
+        source={icon}
         resizeMode="contain"
         tintColor={color}
         className="w-6 h-6"
       />
       <Text
         className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
+        style={{color: color}}
       >
         {name}
       </Text>
@@ -27,6 +28,14 @@ const TabsLayout = () => {
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
+          tabBarActiveTintColor: '#FFA001',
+          tabBarInactiveTintColor: "#CDCDE0",
+          tabBarStyle: {
+            backgroundColor: '#161002',
+            borderTopWidth: 1,
+            borderTopColor: "#232533",
+            height: 84,
+          }
         }}
       >
         <Tabs.Screen
@@ -60,21 +69,6 @@ const TabsLayout = () => {
           }}
         ></Tabs.Screen>
         <Tabs.Screen
-          name="profile"
-          options={{
-            headerShown: false,
-            title: "Profile",
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.profile}
-                color={color}
-                focused={focused}
-                name="Profile"
-              ></TabIcon>
-            ),
-          }}
-        ></Tabs.Screen>
-        <Tabs.Screen
           name="create"
           options={{
             title: "Create",
@@ -85,6 +79,21 @@ const TabsLayout = () => {
                 color={color}
                 focused={focused}
                 name="Create"
+              ></TabIcon>
+            ),
+          }}
+        ></Tabs.Screen>
+        <Tabs.Screen
+          name="profile"
+          options={{
+            headerShown: false,
+            title: "Profile",
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.profile}
+                color={color}
+                focused={focused}
+                name="Profile"
               ></TabIcon>
             ),
           }}

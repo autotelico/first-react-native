@@ -1,21 +1,56 @@
 /// <reference types="nativewind/types" />
 
-import { Text, View } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
-import { Link } from 'expo-router'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import './global.css'
+import { Image, ScrollView, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { Link, router } from "expo-router";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { images } from "../constants";
+import "./global.css";
+import CustomButton from "@/components/CustomButton";
 
 const App = () => {
   return (
-    <View className='flex items-center justify-center'>
-      <Text className="text-3xl font-pblack text-red-500">Aora!</Text>
-      <Link href='/(tabs)/home' className='text-blue-700'>Go to Home</Link>
-      <Link href='/profile' className='text-blue-700'>Go to Profile</Link>
-    </View>
-  )
-}
+    <SafeAreaView className="bg-primary h-full">
+      <ScrollView contentContainerStyle={{ height: "100%" }}>
+        <View className="w-full justify-center items-center min-h-[85vh] px-4">
+          <Image
+            source={images.logo}
+            className="w-[130px] h-[84px]"
+            resizeMode="contain"
+          />
+          <Image
+            source={images.cards}
+            className="max-w-[380px] h-[300px] w-full"
+            resizeMode="contain"
+          />
+          <View className="relative mt-5">
+            <Text className="text-3xl text-white font-bold text-center">
+              Discover Endless Possibilities with{" "}
+              <Text className="text-secondary-200">Aora</Text>
+            </Text>
+            <Image
+              source={images.path}
+              className="w-[136px] h-[15px] -bottom-1 left-52"
+            />
+            <Text className="text-gray-100 text-sm font-pregular text-center mt-7">
+              Where creativity meets innovation: embark on a journey of
+              limitless exploration with Aora!
+            </Text>
+            <CustomButton
+              title="Continue with email"
+              handlePress={() => {router.push('/sign-in')}}
+              containerStyles="w-full mt-7"
+            />
+          </View>
+        </View>
+      </ScrollView>
 
-export default App
+      {/* Responsible for showing the bar at the top. Tricks users
+      into wasting more time inside the app */}
+      <StatusBar backgroundColor="#161002" style="light" />
+    </SafeAreaView>
+  );
+};
 
+export default App;
